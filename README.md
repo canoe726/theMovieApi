@@ -2,6 +2,7 @@
 yts.mx 영화 API 호출 웹 페이지
 
 
+
 ### 1. theMovieApi 프로젝트
 > yts.mx 홈페이지에서 api 호출 기능 구현 (URL : https://yts.mx/api#list_movies)
 
@@ -12,12 +13,14 @@ yts.mx 영화 API 호출 웹 페이지
 >  ES6 문법을 활용한 모듈 분리
 
 
+
 ### 2. 개요
 1) 사용언어 : HTML, CSS, Vanilla JavaScript (ES6)
 
 2) 서버 : web server for chrome 확장 프로그램을 통해서 실행
 
 3) 실행환경 : Chrome 브라우저 (IE 및 다른 브라우저에서 특정 기능이 수행 되지 않을 수 있음)
+
 
 
 ## 3. 실행화면
@@ -38,6 +41,7 @@ yts.mx 영화 API 호출 웹 페이지
 > 왼쪽부터 UI 기능 구현, API 호출 중 에러 발생시 에러처리
 
 
+
 ## 4. 구현한 코드
 
 ### 1. AbortController
@@ -45,6 +49,7 @@ yts.mx 영화 API 호출 웹 페이지
 > fetch는 promise를 기본적으로 반환하는데 비동기 호출을 중단하는 abort 기능이 없다. 
 
 > AbortController를 통해서 비동기 호출을 취소하고 새로운 데이터를 fetch 하는 것이 가능하다.
+
 
 ```
 // fetch가 진행중인지 검사하는 boolean 변수
@@ -89,11 +94,14 @@ const request = async url => {
 };
 ```
 
+
+
 ### 2. yts.mx API
 
 > 기본 yts.mx API URL : https://yts.mx/api/v2/
 
 > 임의의 이름순으로 정렬된 10개의 영화 데이터를 .json 형태로 가져오기 위한 URL : list_movies.json?sort=title&page=3&limit=10
+
 
 ```
 const BASE_MOVIE_URL = 'https://yts.mx/api/v2/';
