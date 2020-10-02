@@ -40,7 +40,7 @@ yts.mx 영화 API 호출 웹 페이지
 
 ## 4. 구현한 코드
 
-1. AbortController
+### 1. AbortController
 
 > fetch는 promise를 기본적으로 반환하는데 비동기 호출을 중단하는 abort 기능이 없다. 
 
@@ -89,7 +89,7 @@ const request = async url => {
 };
 ```
 
-2. yts.mx API
+### 2. yts.mx API
 
 > 기본 yts.mx API URL : https://yts.mx/api/v2/
 
