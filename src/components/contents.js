@@ -1,3 +1,5 @@
+import { lazyLoad } from '../util/lazyLoading.js';
+
 export default class Contents {
     constructor({$target}) {
         this.$target = $target;
@@ -13,11 +15,13 @@ export default class Contents {
         this.$target.appendChild(this.contents);
 
         this.render();
+        lazyLoad();
     }
 
     setState(data) {
         this.data = data;
         this.render();
+        lazyLoad();
     }
 
     render() {
@@ -44,7 +48,8 @@ export default class Contents {
 
                 const img = document.createElement('img');
                 img.className = 'image';
-                img.src = item.medium_cover_image;
+                img.classList.add('lazy');
+                img.dataset.src = item.medium_cover_image;
 
                 const rightBlock = document.createElement('div');
                 rightBlock.className = 'right-block';
