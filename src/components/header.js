@@ -26,6 +26,10 @@ export default class Header {
         getRatingBtn.className = 'get-rating-btn';
         getRatingBtn.innerText = '⭐ 평점순';
 
+        title.addEventListener('click', () => {
+            window.location.href = '/';
+        });
+
         getTItleBtn.addEventListener('click', () => {
             this.onClick('title');
         });

@@ -1,6 +1,7 @@
 const BASE_MOVIE_URL = 'https://yts.mx/api/v2/';
 const GET_TITLE = 'list_movies.json?sort=title&page=3&limit=10';
 const GET_RATING = 'list_movies.json?sort=rating&page=4&limit=10';
+const GET_ID = 'movie_details.json?movie_id=';
 
 // fetch가 진행중인지 검사하는 boolean 변수
 let whileFetching = false;
@@ -43,35 +44,25 @@ const request = async url => {
     }
 };
 
-const api = {
-    getMoviesByTitle: async () => {
-        try {
-            const response = await request(BASE_MOVIE_URL + GET_TITLE);
-            return {
-                isError: false,
-                data: response
-            }
-        } catch(e) {
-            return {
-                isError: true,
-                data: e
-            }
+const getResponse = async url => {
+    try {
+        const response = await request(url);
+        return {
+            isError: false,
+            data: response
         }
-    },
-    getMoviesByRating: async () => {
-        try {
-            const response = await request(BASE_MOVIE_URL + GET_RATING);
-            return {
-                isError: false,
-                data: response
-            }
-        } catch(e) {
-            return {
-                isError: true,
-                data: e
-            }
+    } catch(e) {
+        return {
+            isError: true,
+            data: e
         }
     }
+}
+
+const api = {
+    getMoviesByTitle: () => getResponse(BASE_MOVIE_URL + GET_TITLE),
+    getMoviesByRating: () => getResponse(BASE_MOVIE_URL + GET_RATING),
+    getMovieById: movieId => getResponse(BASE_MOVIE_URL + GET_ID + movieId)
 };
 
 export { api };

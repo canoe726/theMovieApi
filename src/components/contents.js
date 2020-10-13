@@ -1,9 +1,11 @@
+import { router } from '../main.js';
+
 import { lazyLoad } from '../util/lazyLoading.js';
 
 export default class Contents {
-    constructor({$target}) {
+    constructor({$target, data}) {
         this.$target = $target;
-        this.data = null;
+        this.data = data;
 
         this.contents = document.createElement('article');
         this.contents.className = 'movie-content';
@@ -28,8 +30,6 @@ export default class Contents {
         if(!this.data) return;
 
         this.movieItems.innerHTML = '';
-
-        console.log(this.data)
 
         if(this.data.length > 0) {
             this.data.map(item => {
@@ -75,7 +75,9 @@ export default class Contents {
                 desc.innerText = `줄거리 요약 : ${item.summary}`;
 
                 movieCard.addEventListener('click', () => {
-                    window.open(item.url, '_blank');
+                    history.pushState({}, 'movieDetail', `#/movie/${item.id}`);
+                    history.go(1);
+                    router();
                 });
 
                 leftBlock.appendChild(img);
@@ -100,7 +102,7 @@ export default class Contents {
             upBtn.innerText = '☝ 위로가기';
 
             upBtn.addEventListener('click', () => {
-                window.location.href = '#';
+                window.scrollTo(0,0);
             });
 
             this.movieItems.appendChild(upBtn)

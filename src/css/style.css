@@ -19,6 +19,7 @@ button:hover {
 }
 
 header .title {
+    cursor: pointer;
     text-align: center;
     background-color: rgb(255,127,0,0.8);
     color: white;
@@ -35,19 +36,19 @@ header .btn-wrapper {
     height: 300px;
 }   
 
-.left-block {
+.movie-card .left-block {
     float: left;
     margin-right: 15px;
     width: 200px;
     height: 100%;
 }
 
-.left-block img {
+.movie-card .left-block img {
     width: 200px;
 }
 
-.right-block {
-        display: block;
+.movie-card .right-block {
+    display: block;
 }
 
 .hidden {
@@ -110,4 +111,39 @@ header .btn-wrapper {
     margin: 60px 0 60px 0;
     text-align: center;
     cursor: pointer;
+}
+
+.detail-wrapper .title {
+    text-align: center;
+    background-color: rgb(255,127,0,0.8);
+    color: white;
+    padding: 18px;
+    margin: 0;
+}
+
+.movie-wrapper {
+    padding: 28px;
+    height: 600px;
+}
+
+.movie-wrapper .left-block {
+    cursor: pointer;
+    float: left;
+    margin-right: 15px;
+    width: 350px;
+    height: 100%;
+}
+
+.movie-wrapper .left-block img {
+    width: 350px;
+}
+
+.movie-wrapper .right-block {
+    display: block;
+}
+
+.go-home {
+    cursor: pointer;
+    color: cornflowerblue;
+    margin: 10px 0 10px 0;
 }
