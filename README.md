@@ -10,7 +10,9 @@ yts.mx 영화 API 호출 웹 페이지
 
 > fetch 시 abort 기능 구현
 
->  ES6 문법을 활용한 모듈 분리
+> ES6 문법을 활용한 모듈 분리
+
+> router 를 작성을 통한 SPA(Single Page Application) 구현
 
 
 
@@ -110,5 +112,59 @@ const GET_RATING = 'list_movies.json?sort=rating&page=4&limit=10';
 ```
 
 
+
+### 3. localStorage
+
+> API를 통해 불러온 내용을 localStorage 를 사용해 저장
+
+> 저장한 내용을 최신화하기 위해 5분마다 저장소 초기화
+
+```
+const getLocal = keywords => {
+    const data = localStorage.getItem(keywords);
+    if(keywords === 'movies') {
+        const jsonData = JSON.parse(data);
+        return jsonData;
+    }
+}
+
+const setLocal = (keywords, data, timeOut) => {
+    const jsonData = JSON.stringify(data);
+    localStorage.setItem(keywords, jsonData);
+
+    setTimeout(() => {
+        localStorage.removeItem(keywords);
+    }, timeOut);
+}
+```
+
+
+
+### 4. IntersectionObserver
+
+> IntersectionObserver 를 통해 현재 웹 화면의 viewport 에 이미지가 존재할 경우 불러오는 것으로 로딩속도 개선
+
+```
+const lazyLoad = () => {
+    const lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
+
+    if("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    let lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.classList.remove('lazy');
+                    lazyImageObserver.unobserve(lazyImage);
+                }
+            });
+        });
+
+        lazyImages.forEach(lazyImage => {
+            lazyImageObserver.observe(lazyImage);
+        });
+    }
+}
+```
 
 
